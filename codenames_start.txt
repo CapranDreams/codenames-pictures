@@ -1,0 +1,2 @@
+cd servername.com/codenames-pictures/server
+node server.js > stdout.txt 2> stderr.txt &
