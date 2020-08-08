@@ -1,0 +1,292 @@
+body {
+	background-color:#222;
+	font-family: "Helvetica Neue", sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+input {
+	outline: none;
+	font-size: 1.0rem;
+	padding: 0 5px;
+}
+
+button {
+	text-transform: uppercase;
+	font-size: 0.8rem;
+	padding: 3px 15px;
+	color: white;
+	line-height: 25px;
+	background-color: #00bcd4;
+	border: none;
+	border-radius: 2px;
+	cursor: pointer;
+	box-shadow: rgba(0, 0, 0, 0.12) 0 1px 6px, rgba(0, 0, 0, 0.12) 0 1px 4px;
+	transition: all 150ms ease-in;
+	outline: none;
+}
+
+button:hover {
+    background-color: #79d7e4;
+}
+
+button.turn {
+	color: rgb(255, 64, 129);
+	background-color: white;
+	box-shadow:none;
+}
+
+button.turn:hover {
+	background-color: #eaeaea;
+}
+
+.rps-wrapper {
+	position: fixed;
+	left:1vw;
+	bottom:1vw;
+	background-color: #ccc;
+	width: 20vw;
+	height: 25vh;
+	max-height: 25vh;
+	margin: 20px auto;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid lightgrey;
+}
+
+#events {
+	flex-grow: 1;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	border-bottom: 1px solid lightgrey;
+	overflow-y: scroll;
+}
+
+#events li {
+	padding: 10px 10px 10px 10px;
+}
+
+.chat-wrapper {
+	padding: 10px;
+}
+
+.chat-wrapper input {
+	width:13vw;
+	font-size: 1.0rem;
+	margin: 0 10px 0 0;
+	padding: 0 5px;
+	flex-grow: 1;
+}
+.chat-wrapper button {
+	width:4vw;
+}
+
+
+.button-wrapper {
+	display: flex;
+	padding: 10px 50px;
+	justify-content: space-evenly;
+}
+
+
+.rules {
+	color: #f23202;
+	padding-left: 1vw;
+	padding-top: 1vw;
+	font-size: 2.4vw;
+	width: 20vw;
+	height: 8vh;
+}
+
+.scoreboard {
+	padding-left: 1vw;
+	font-size: 2vw;
+	width: 20vw;
+	height: 10vh;
+}
+
+.player_id {
+	padding-left: 1.75vw;
+	font-size: 1.1vw;
+	width: 20vw;
+	height: 10vh;
+}
+.player_id_team_red {
+	position:fixed;
+	left: 15vw;
+	top:8vh;
+	width: 8vh;
+	height: 8vh;
+	background-image:linear-gradient(red, orange);
+	border-radius: 8px;
+	border: 3px solid red;
+}
+.player_id_team_blue {
+	position:fixed;
+	left: 15vw;
+	top:8vh;
+	width: 8vh;
+	height: 8vh;
+	background-image:linear-gradient(blue, cyan);
+	border-radius: 8px;
+	border: 3px solid cyan;
+}
+
+.tileBG1 {
+	width:10vw; 
+	height:10vw; 
+	background-image: linear-gradient(red, orange);	//#f58c31
+}
+.tileBG2 {
+	width:10vw; 
+	height:10vw; 
+	background-image: linear-gradient(blue, cyan);
+}
+.tileBG3 {
+	width:10vw; 
+	height:10vw; 
+	background-image: linear-gradient(black, grey);
+}
+.tileBG4 {
+	width:10vw; 
+	height:10vw; 
+	background-image: linear-gradient(#c6f700, #80db00); 
+}
+
+.tile-grid {
+	position:fixed;
+	left:25vw;
+	top:1vw;
+}
+
+.tile {
+	width:10vw; 
+	height:10vw; 
+}
+
+.column {
+  float: left;
+  width: 10vw;
+  padding: 0.5vw;
+}
+
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+img {
+	z-index:10;
+}
+span {
+	z-index:2;
+}
+
+.tileBG {
+	z-index:2;
+}
+
+.button-newgame {
+	padding: 20px 20px 20px 20px;
+	font-size: 1vw;
+	width: 20vw;
+	height: 10vw;
+}
+.newgame {
+	background-color:#839400;
+	color:black;
+	width:20vw;
+	height:2.5vw;
+	border-radius: 4px;
+	transition: all 350ms ease-in;
+	margin-bottom:1vw;
+	font-size: 1.4vw;
+}
+
+.newgame:hover {
+	color: #c2cc00;
+    background-color: #009bc2;
+}
+
+.teamchange {
+	background-color:#9fa19a;	//gray green
+	color:black;
+	width:9.75vw;
+	height:2.5vw;
+	border-radius: 4px;
+	transition: all 500ms ease-in;
+	margin-bottom:1vw;
+	font-size: 1.2vw;
+}
+
+.teamchange-blue {
+	background-color:#00b5b5;
+	color:black;
+	width:9.75vw;
+	height:2.5vw;
+	border-radius: 4px;
+	transition: all 500ms ease-in;
+	margin-bottom:1vw;
+	font-size: 1.2vw;
+}
+
+.teamchange-red {
+	background-color:#cc2200;
+	color:black;
+	width:9.75vw;
+	height:2.5vw;
+	border-radius: 4px;
+	transition: all 500ms ease-in;
+	margin-bottom:1vw;
+	font-size: 1.2vw;
+}
+
+.teamchange-red:hover {
+	color: black;
+    background-color: #b55800;
+}
+.teamchange-blue:hover {
+	color: white;
+    background-color: #004f87;
+}
+.role {
+	background-color:#9fa19a;
+	color:black;
+	width:9.75vw;
+	height:2.5vw;
+	border-radius: 4px;
+	transition: all 500ms ease-in;
+	font-size: 1.2vw;
+}
+.role_guesser {
+	background-color:#d1c62a;
+	color:black;
+	width:9.75vw;
+	height:2.5vw;
+	border-radius: 4px;
+	transition: all 500ms ease-in;
+	font-size: 1.2vw;
+}
+.role_spymaster {
+	background-color:#730062;
+	color:white;
+	width:9.75vw;
+	height:2.5vw;
+	border-radius: 4px;
+	transition: all 500ms ease-in;
+	font-size: 1.2vw;
+}
+.role_guesser:hover {
+	color: white;
+    background-color: #665f02;
+}
+.role_spymaster:hover {
+	color: black;
+    background-color: #e0008a;
+}
+
+
+
