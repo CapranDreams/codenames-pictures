@@ -1,5 +1,5 @@
 # codenames-pictures
-Online codenames picture game
+<b>Online codenames picture game</b>
 
 Make sure to install node.js<br/>
 Download PuTTY as well (not necessary, but it is what I use to start the game)
