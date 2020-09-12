@@ -1,0 +1,1 @@
+This is a variant that allows 3 teams to play Codenames Pictures on an expanded grid. There is still 1 bomb tile but no neutral tiles any more. Each time has 10 tiles except the last player has 1 less tile to guess. The team to the right of the team with only 9 tiles goes first.
