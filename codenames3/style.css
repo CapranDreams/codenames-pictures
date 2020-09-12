@@ -1,0 +1,89 @@
+body{
+	background:#222;
+}
+
+
+.box{
+	background:white;
+	width:60%;
+	height:60%;
+	border-radius:6px;
+	margin: 5% auto auto auto;
+	padding: 10px;
+	text-align:center;
+	box-shadow: 5px 5px 10px #888888;
+}
+
+.chatBox {
+	background:#f4f4f4;
+	border-radius:5px;
+	width:90%;
+	height:60%;
+	margin:5% auto 5% auto;
+	border:1px solid;
+	border-color:#f4f4f4;
+	overflow-y:scroll;
+}
+
+.chatCell {
+	background:white;
+	width:100%;
+	height:15%;
+	margin:auto auto 1px auto;
+}
+
+.btn{
+	background:#2ecc71;
+	height:30px;
+	color:white;
+	border-radius:4px;
+}
+
+.btn:hover{
+	background:#2CC06B;
+}
+
+section {  padding:10px; overflow:hidden; }
+section > section { float:left; }
+.indent-1 { padding-left:10px; }
+.button {
+  border: 3px solid #0492C2;; 
+  background-color:#111;
+  color: #63C5DA;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 36px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width:90%;
+  height:12%;
+}
+.team_red {
+	background-image: 
+	linear-gradient(
+	  rgba(255, 0, 0, 0.45), 
+	  rgba(255, 0, 0, 0.45)
+	);
+}
+
+.grad_1 {
+	width:10vw; 
+	height:10vw; 
+	background-image: linear-gradient(red, orange);	//#f58c31
+}
+.grad_2 {
+	width:10vw; 
+	height:10vw; 
+	background-image: linear-gradient(blue, cyan);
+}
+.grad_3 {
+	width:10vw; 
+	height:10vw; 
+	background-image: linear-gradient(black, grey);
+}
+.grad_4 {
+	width:10vw; 
+	height:10vw; 
+	background-image: linear-gradient(#42423c, yellow);
+}
