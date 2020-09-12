@@ -23,10 +23,9 @@ Guesser view:<br/>
 Spymaster view:<br/>
 ![Spymaster view](https://github.com/glitchcrafter/codenames-pictures/blob/master/img-ref/spymaster_view.png)
 
-
+<br/><br/>
 *** UPDATE ***
 Added support for playing with 3 teams by expanding the grid to 5x6 tiles and removing neutral tiles. See the Codenames3 folder.
-
 <br/>
-![Guesser view](https://github.com/glitchcrafter/codenames-pictures/blob/master/img-ref/Codenames3Guesser.png)
+![Codenames for 3 teams](https://github.com/glitchcrafter/codenames-pictures/blob/master/img-ref/Codenames3Guesser.png)
 
