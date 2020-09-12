@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Codenames</title>
+    <link rel="stylesheet" href="styles/main.css">
+	
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="src/client.js"></script>
+</head>
+<body>
+	<div class="rules">
+		Codenames
+	</div>
+	
+	<div class="player_id">
+		<span style="color:#9f6b30;" id="playername">
+			playername
+		</span><br>
+		<span style="color:#9f6b30;" id="playerteam">
+			team
+		</span><br>
+		<span class="player_id_team_red" id="team_color_square"></span>
+		<span style="color:#9f6b30;" id="playerrole">
+			role
+		</span><br>
+	</div>
+	
+	<div class="scoreboard">
+		<span style="color:#5aad00;">Remaining:</span>
+		<span style="color:#c42902;" id="red_remain">1</span>
+		<span style="color:#5aad00;">:</span>
+		<span style="color:#0094de;" id="blue_remain">1</span>
+		<span style="color:#5aad00;">:</span>
+		<span style="color:#9dc209;" id="green_remain">1</span>
+	</div>
+	
+	<div class="button-newgame">
+		<button id="newgame" class="newgame" onclick="newgame()">New Game</button><br>
+		<button id="redteam" class="teamchange" onclick="changeteam(0)">>RED</button>
+		<button id="blueteam" class="teamchange" onclick="changeteam(1)">>BLUE</button>
+		<button id="greenteam" class="teamchange" onclick="changeteam(2)">>GREEN</button>
+		<button id="guesser_select" class="role" onclick="changerole(0)">Guesser</button>
+		<button id="spymaster_select" class="role" onclick="changerole(1)">Spymaster</button>
+	</div>
+	
+			
+    <div class="rps-wrapper">
+		<ul id="events"></ul>
+		<div class="controls">
+			<div class="chat-wrapper">
+				<input id="chat" autocomplete="off" title="chat"/>
+				<button id="say" onclick="sendChat()">Say</button>
+			</div>
+		</div>
+    </div>
+	
+	</span>
+	<div class="tile-grid">
+		<div class="row">
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:25.5vw; top:1.5vw;" id="code1">
+				<img src="img/1.jpg" class="tile" id="tile1" onclick="pickTile(1)"; style="width:9vw; height:9vw; position:fixed; left:25.5vw; top:1.5vw;">
+			</div>
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:35.5vw; top:1.5vw;" id="code2">
+				<img src="img/1.jpg" class="tile" id="tile2" onclick="pickTile(2)" style="width:9vw; height:9vw; position:fixed; left:35.5vw; top:1.5vw;">
+			</div>
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:45.5vw; top:1.5vw;" id="code3">
+				<img src="img/1.jpg" class="tile" id="tile3" onclick="pickTile(3)" style="width:9vw; height:9vw; position:fixed; left:45.5vw; top:1.5vw;">
+			</div>
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:55.5vw; top:1.5vw;" id="code4">
+				<img src="img/1.jpg" class="tile" id="tile4" onclick="pickTile(4)" style="width:9vw; height:9vw; position:fixed; left:55.5vw; top:1.5vw;">
+			</div>
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:65.5vw; top:1.5vw;" id="code5">
+				<img src="img/1.jpg" class="tile" id="tile5" onclick="pickTile(5)" style="width:9vw; height:9vw; position:fixed; left:65.5vw; top:1.5vw;">
+			</div>
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:75.5vw; top:1.5vw;" id="code6">
+				<img src="img/1.jpg" class="tile" id="tile6" onclick="pickTile(6)" style="width:9vw; height:9vw; position:fixed; left:75.5vw; top:1.5vw;">
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:25.5vw; top:11.5vw;" id="code7">
+				<img src="img/1.jpg" class="tile" id="tile7" onclick="pickTile(7)"; style="width:9vw; height:9vw; position:fixed; left:25.5vw; top:11.5vw;">
+			</div>
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:35.5vw; top:11.5vw;" id="code8">
+				<img src="img/1.jpg" class="tile" id="tile8" onclick="pickTile(8)" style="width:9vw; height:9vw; position:fixed; left:35.5vw; top:11.5vw;">
+			</div>
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:45.5vw; top:11.5vw;" id="code9">
+				<img src="img/1.jpg" class="tile" id="tile9" onclick="pickTile(9)" style="width:9vw; height:9vw; position:fixed; left:45.5vw; top:11.5vw;">
+			</div>
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:55.5vw; top:11.5vw;" id="code10">
+				<img src="img/1.jpg" class="tile" id="tile10" onclick="pickTile(10)" style="width:9vw; height:9vw; position:fixed; left:55.5vw; top:11.5vw;">
+			</div>
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:65.5vw; top:11.5vw;" id="code11">
+				<img src="img/1.jpg" class="tile" id="tile11" onclick="pickTile(11)" style="width:9vw; height:9vw; position:fixed; left:65.5vw; top:11.5vw;">
+			</div>
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:75.5vw; top:11.5vw;" id="code12">
+				<img src="img/1.jpg" class="tile" id="tile12" onclick="pickTile(12)" style="width:9vw; height:9vw; position:fixed; left:75.5vw; top:11.5vw;">
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:25.5vw; top:21.5vw;" id="code13">
+				<img src="img/1.jpg" class="tile" id="tile13" onclick="pickTile(13)"; style="width:9vw; height:9vw; position:fixed; left:25.5vw; top:21.5vw;">
+			</div>
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:35.5vw; top:21.5vw;" id="code14">
+				<img src="img/1.jpg" class="tile" id="tile14" onclick="pickTile(14)" style="width:9vw; height:9vw; position:fixed; left:35.5vw; top:21.5vw;">
+			</div>
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:45.5vw; top:21.5vw;" id="code15">
+				<img src="img/1.jpg" class="tile" id="tile15" onclick="pickTile(15)" style="width:9vw; height:9vw; position:fixed; left:45.5vw; top:21.5vw;">
+			</div>
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:55.5vw; top:21.5vw;" id="code16">
+				<img src="img/1.jpg" class="tile" id="tile16" onclick="pickTile(16)" style="width:9vw; height:9vw; position:fixed; left:55.5vw; top:21.5vw;">
+			</div>
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:65.5vw; top:21.5vw;" id="code17">
+				<img src="img/1.jpg" class="tile" id="tile17" onclick="pickTile(17)" style="width:9vw; height:9vw; position:fixed; left:65.5vw; top:21.5vw;">
+			</div>
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:75.5vw; top:21.5vw;" id="code18">
+				<img src="img/1.jpg" class="tile" id="tile18" onclick="pickTile(18)" style="width:9vw; height:9vw; position:fixed; left:75.5vw; top:21.5vw;">
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:25.5vw; top:31.5vw;" id="code19">
+				<img src="img/1.jpg" class="tile" id="tile19" onclick="pickTile(19)"; style="width:9vw; height:9vw; position:fixed; left:25.5vw; top:31.5vw;">
+			</div>
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:35.5vw; top:31.5vw;" id="code20">
+				<img src="img/1.jpg" class="tile" id="tile20" onclick="pickTile(20)" style="width:9vw; height:9vw; position:fixed; left:35.5vw; top:31.5vw;">
+			</div>
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:45.5vw; top:31.5vw;" id="code21">
+				<img src="img/1.jpg" class="tile" id="tile21" onclick="pickTile(21)" style="width:9vw; height:9vw; position:fixed; left:45.5vw; top:31.5vw;">
+			</div>
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:55.5vw; top:31.5vw;" id="code22">
+				<img src="img/1.jpg" class="tile" id="tile22" onclick="pickTile(22)" style="width:9vw; height:9vw; position:fixed; left:55.5vw; top:31.5vw;">
+			</div>
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:65.5vw; top:31.5vw;" id="code23">
+				<img src="img/1.jpg" class="tile" id="tile23" onclick="pickTile(23)" style="width:9vw; height:9vw; position:fixed; left:65.5vw; top:31.5vw;">
+			</div>
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:75.5vw; top:31.5vw;" id="code24">
+				<img src="img/1.jpg" class="tile" id="tile24" onclick="pickTile(24)" style="width:9vw; height:9vw; position:fixed; left:75.5vw; top:31.5vw;">
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:25.5vw; top:41.5vw;" id="code25">
+				<img src="img/1.jpg" class="tile" id="tile25" onclick="pickTile(25)"; style="width:9vw; height:9vw; position:fixed; left:25.5vw; top:41.5vw;">
+			</div>
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:35.5vw; top:41.5vw;" id="code26">
+				<img src="img/1.jpg" class="tile" id="tile26" onclick="pickTile(26)" style="width:9vw; height:9vw; position:fixed; left:35.5vw; top:41.5vw;">
+			</div>
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:45.5vw; top:41.5vw;" id="code27">
+				<img src="img/1.jpg" class="tile" id="tile27" onclick="pickTile(27)" style="width:9vw; height:9vw; position:fixed; left:45.5vw; top:41.5vw;">
+			</div>
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:55.5vw; top:41.5vw;" id="code28">
+				<img src="img/1.jpg" class="tile" id="tile28" onclick="pickTile(28)" style="width:9vw; height:9vw; position:fixed; left:55.5vw; top:41.5vw;">
+			</div>
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:65.5vw; top:41.5vw;" id="code29">
+				<img src="img/1.jpg" class="tile" id="tile29" onclick="pickTile(29)" style="width:9vw; height:9vw; position:fixed; left:65.5vw; top:41.5vw;">
+			</div>
+			<div class="column">
+				<span class="tileBG" style="width:9vw; height:9vw; position:fixed; left:75.5vw; top:41.5vw;" id="code30">
+				<img src="img/1.jpg" class="tile" id="tile30" onclick="pickTile(30)" style="width:9vw; height:9vw; position:fixed; left:75.5vw; top:41.5vw;">
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
