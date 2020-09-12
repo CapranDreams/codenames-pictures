@@ -24,7 +24,7 @@ var tilemap = []
 var codemap = []
 var red_flags = 7;
 var blue_flags = 7;
-var num_images = 73;
+var num_images = 281;
 function newgame() {
 	//generate tile map
 	tilemap = []
@@ -47,24 +47,24 @@ function newgame() {
 		blue_flags++;
 	}	
 	for(i=0;i<red_flags;i++) {
-		var new_val = Math.floor(Math.random()*20)+1;
+		var new_val = Math.floor(Math.random()*20);
 		while(codemap[new_val]!=4) {
-			new_val = Math.floor(Math.random()*20)+1;
+			new_val = Math.floor(Math.random()*20);
 		}
 		codemap[new_val] = 1;
 		console.log('red:', new_val);
 	}
 	for(i=0;i<blue_flags;i++) {
-		var new_val = Math.floor(Math.random()*20)+1;
+		var new_val = Math.floor(Math.random()*20);
 		while(codemap[new_val]!=4) {
-			new_val = Math.floor(Math.random()*20)+1;
+			new_val = Math.floor(Math.random()*20);
 		}
 		codemap[new_val] = 2;
 		console.log('blue:', new_val);
 	}
-	var new_val = Math.floor(Math.random()*20)+1;
+	var new_val = Math.floor(Math.random()*20);
 	while(codemap[new_val]!=4) {
-		new_val = Math.floor(Math.random()*20)+1;
+		new_val = Math.floor(Math.random()*20);
 	}
 	codemap[new_val] = 3;
 	console.log('blk:', new_val);	
@@ -76,6 +76,15 @@ io.on('connection', function(sock){
 	io.emit('message', "player joined: "+sock.id);
 	console.log('Player joined: '+sock.id);
 	sock.emit('giveid', sock.id);
+	
+	// Update screen to existing game
+	io.emit('tilemap', red_flags, blue_flags, tilemap[0],tilemap[1],tilemap[2],tilemap[3],tilemap[4],tilemap[5],tilemap[6],tilemap[7],tilemap[8],tilemap[9],tilemap[10],tilemap[11],tilemap[12],tilemap[13],tilemap[14],tilemap[15],tilemap[16],tilemap[17],tilemap[18],tilemap[19], codemap[0],codemap[1],codemap[2],codemap[3],codemap[4],codemap[5],codemap[6],codemap[7],codemap[8],codemap[9],codemap[10],codemap[11],codemap[12],codemap[13],codemap[14],codemap[15],codemap[16],codemap[17],codemap[18],codemap[19]);
+	
+	for(i=0;i<30;i++) {
+		if(alreadyGuessed[i]) {
+			io.emit('tile', i, red_flags, blue_flags);
+		}
+	}
 	
 	
 	sock.on('newgame', (data) => {
@@ -98,6 +107,12 @@ io.on('connection', function(sock){
 			role = "Spymaster";
 		}
 		console.log('['+player+'] set role:', role);
+		
+		for(i=0;i<30;i++) {
+		if(alreadyGuessed[i]) {
+			io.emit('tile', i, red_flags, blue_flags);
+		}
+	}
 	});
 	
 	sock.on('guess', (data , player) => {
